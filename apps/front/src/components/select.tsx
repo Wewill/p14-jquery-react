@@ -36,7 +36,6 @@ export default function Select({
 
   return (
     <>
-      {JSON.stringify(options)}
       <label htmlFor={name}>{label}</label>
       <select id={name} name={name}></select>
     </>
