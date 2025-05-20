@@ -31,20 +31,22 @@ export default function Create() {
   return (
     <>
       <h2>Create Employee</h2>
-      <form onSubmit={handleCreate}>
-        <label htmlFor="first-name">First Name</label>
-        <input type="text" id="first-name" name="firstName" />
+      <form className="w-1/3" onSubmit={handleCreate}>
+        <fieldset id="contact" className="grid">
+          <label htmlFor="first-name">First Name</label>
+          <input type="text" id="first-name" name="firstName" />
 
-        <label htmlFor="last-name">Last Name</label>
-        <input type="text" id="last-name" name="lastName" />
+          <label htmlFor="last-name">Last Name</label>
+          <input type="text" id="last-name" name="lastName" />
 
-        <label htmlFor="date-of-birth">Date of Birth</label>
-        <input id="date-of-birth" type="text" name="dateOfBirth" />
+          <label htmlFor="date-of-birth">Date of Birth</label>
+          <input id="date-of-birth" type="text" name="dateOfBirth" />
 
-        <label htmlFor="start-date">Start Date</label>
-        <input id="start-date" type="text" name="startDate" />
+          <label htmlFor="start-date">Start Date</label>
+          <input id="start-date" type="text" name="startDate" />
+        </fieldset>
 
-        <fieldset className="address">
+        <fieldset id="address" className="grid">
           <legend>Address</legend>
 
           <label htmlFor="street">Street</label>

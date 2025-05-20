@@ -11,7 +11,7 @@ function App() {
           <img src={logo} className="logo" alt="HRnet logo" />
         </a>
       </header>
-      <h1>HRnet</h1>
+      <h1 className="text-blue-500">HRnet</h1>
       <main className="">
         <Create />
         <Employees />

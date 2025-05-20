@@ -10,19 +10,12 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import type { Column, PaginationState, Table } from "@tanstack/react-table";
+import type { PaginationState } from "@tanstack/react-table";
 
-type Employee = {
-  firstName: string;
-  lastName: string;
-  dateOfBirth: string;
-  startDate: string;
-  street: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  department: string;
-};
+import type { Employee } from "../types";
+
+import TableHead from "./datatable/tableHead";
+import GlobalSearch from "./datatable/globalSearch";
 
 const defaultData: Employee[] = [
   {
@@ -91,116 +84,6 @@ const defaultData: Employee[] = [
     zipCode: "24680",
     department: "IT",
   },
-  {
-    firstName: "Emily",
-    lastName: "Clark",
-    dateOfBirth: "1991-04-18",
-    startDate: "2017-11-05",
-    street: "222 Cedar St",
-    city: "Springfield",
-    state: "OH",
-    zipCode: "11223",
-    department: "Support",
-  },
-  {
-    firstName: "Frank",
-    lastName: "Evans",
-    dateOfBirth: "1987-12-09",
-    startDate: "2016-07-22",
-    street: "333 Walnut St",
-    city: "Lakeview",
-    state: "MI",
-    zipCode: "33445",
-    department: "Logistics",
-  },
-  {
-    firstName: "Grace",
-    lastName: "Miller",
-    dateOfBirth: "1994-06-30",
-    startDate: "2021-01-10",
-    street: "444 Spruce St",
-    city: "Hilltown",
-    state: "CO",
-    zipCode: "55667",
-    department: "Legal",
-  },
-  {
-    firstName: "Henry",
-    lastName: "Moore",
-    dateOfBirth: "1989-10-22",
-    startDate: "2015-04-18",
-    street: "555 Aspen St",
-    city: "Rivercity",
-    state: "GA",
-    zipCode: "77889",
-    department: "Procurement",
-  },
-  {
-    firstName: "Ivy",
-    lastName: "Taylor",
-    dateOfBirth: "1996-02-14",
-    startDate: "2022-09-01",
-    street: "666 Chestnut St",
-    city: "Sunville",
-    state: "AZ",
-    zipCode: "99001",
-    department: "Research",
-  },
-  {
-    firstName: "Jack",
-    lastName: "Anderson",
-    dateOfBirth: "1990-08-05",
-    startDate: "2019-12-12",
-    street: "777 Willow St",
-    city: "Westport",
-    state: "OR",
-    zipCode: "10112",
-    department: "Development",
-  },
-  {
-    firstName: "Karen",
-    lastName: "Thomas",
-    dateOfBirth: "1986-03-11",
-    startDate: "2014-06-23",
-    street: "888 Poplar St",
-    city: "Easton",
-    state: "PA",
-    zipCode: "20223",
-    department: "Operations",
-  },
-  {
-    firstName: "Liam",
-    lastName: "White",
-    dateOfBirth: "1993-11-17",
-    startDate: "2020-03-30",
-    street: "999 Redwood St",
-    city: "Northfield",
-    state: "MN",
-    zipCode: "30334",
-    department: "Quality",
-  },
-  {
-    firstName: "Mia",
-    lastName: "Martin",
-    dateOfBirth: "1997-05-28",
-    startDate: "2023-01-15",
-    street: "1010 Cypress St",
-    city: "Southgate",
-    state: "NC",
-    zipCode: "40445",
-    department: "Customer Service",
-  },
-  {
-    firstName: "Noah",
-    lastName: "King",
-    dateOfBirth: "1992-09-03",
-    startDate: "2018-10-08",
-    street: "1111 Magnolia St",
-    city: "Brookside",
-    state: "MO",
-    zipCode: "50556",
-    department: "Administration",
-  },
 ];
 
 const columnHelper = createColumnHelper<Employee>();
@@ -253,6 +136,9 @@ export default function Employees() {
     pageSize: 10,
   });
 
+  // Global search state
+  const [globalFilter, setGlobalFilter] = useState<any>([]);
+
   // Table instance
   const table = useReactTable({
     columns,
@@ -266,7 +152,9 @@ export default function Employees() {
     //no need to pass pageCount or rowCount with client-side pagination as it is calculated automatically
     state: {
       pagination,
+      globalFilter,
     },
+    onGlobalFilterChange: setGlobalFilter,
     // autoResetPageIndex: false, // turn off page index reset when sorting or filtering
   });
 
@@ -274,41 +162,14 @@ export default function Employees() {
     <>
       <h2>Current Employees</h2>
 
+      <GlobalSearch table={table} />
+
       <div className="p-2">
         <div className="h-2" />
         <table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th key={header.id} colSpan={header.colSpan}>
-                      <div
-                        {...{
-                          className: header.column.getCanSort()
-                            ? "cursor-pointer select-none"
-                            : "",
-                          onClick: header.column.getToggleSortingHandler(),
-                        }}
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                        {{
-                          asc: " 🔼",
-                          desc: " 🔽",
-                        }[header.column.getIsSorted() as string] ?? " •"}
-                        {header.column.getCanFilter() ? (
-                          <div>
-                            <Filter column={header.column} table={table} />
-                          </div>
-                        ) : null}
-                      </div>
-                    </th>
-                  );
-                })}
-              </tr>
+              <TableHead headerGroup={headerGroup} table={table} />
             ))}
           </thead>
           <tbody>
@@ -405,57 +266,5 @@ export default function Employees() {
         <button onClick={() => rerender()}>Force Rerender</button>
       </div>
     </>
-  );
-}
-
-function Filter({
-  column,
-  table,
-}: {
-  column: Column<any, any>;
-  table: Table<any>;
-}) {
-  const firstValue = table
-    .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
-
-  const columnFilterValue = column.getFilterValue();
-
-  return typeof firstValue === "number" ? (
-    <div className="flex space-x-2" onClick={(e) => e.stopPropagation()}>
-      <input
-        type="number"
-        value={(columnFilterValue as [number, number])?.[0] ?? ""}
-        onChange={(e) =>
-          column.setFilterValue((old: [number, number]) => [
-            e.target.value,
-            old?.[1],
-          ])
-        }
-        placeholder={`Min`}
-        className="w-24 border shadow rounded"
-      />
-      <input
-        type="number"
-        value={(columnFilterValue as [number, number])?.[1] ?? ""}
-        onChange={(e) =>
-          column.setFilterValue((old: [number, number]) => [
-            old?.[0],
-            e.target.value,
-          ])
-        }
-        placeholder={`Max`}
-        className="w-24 border shadow rounded"
-      />
-    </div>
-  ) : (
-    <input
-      className="w-36 border shadow rounded"
-      onChange={(e) => column.setFilterValue(e.target.value)}
-      onClick={(e) => e.stopPropagation()}
-      placeholder={`Search...`}
-      type="text"
-      value={(columnFilterValue ?? "") as string}
-    />
   );
 }
