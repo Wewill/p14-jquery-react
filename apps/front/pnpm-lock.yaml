@@ -6,9 +6,7 @@ settings:
 
 importers:
 
-  .: {}
-
-  apps/front:
+  .:
     dependencies:
       react:
         specifier: ^19.1.0
