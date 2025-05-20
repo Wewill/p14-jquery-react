@@ -1,7 +1,12 @@
 import Datepicker from "./datepicker";
 import Select from "./select";
+import type { Employee } from "../types";
 
-export default function Create() {
+export default function Create({
+  onCreate,
+}: {
+  onCreate: (employee: Employee) => void;
+}) {
   const states = [
     {
       name: "Alabama",
@@ -256,7 +261,7 @@ export default function Create() {
     },
     {
       name: "Human Resources",
-      abbreviation: "HR",
+      abbreviation: "Human Resources",
     },
     {
       name: "Finance",
@@ -271,8 +276,8 @@ export default function Create() {
     const formData = new FormData(form);
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
-    const dateOfBirth = formData.get("dateOfBirth") as string;
-    const startDate = formData.get("startDate") as string;
+    const dateOfBirth = formData.get("date-of-birth") as string;
+    const startDate = formData.get("start-date") as string;
     const street = formData.get("street") as string;
     const city = formData.get("city") as string;
     const state = formData.get("state") as string;
@@ -288,14 +293,15 @@ export default function Create() {
       state,
       zipCode,
       department,
-    };
+    } as Employee;
 
-    return employee;
+    console.log(employee);
+
+    onCreate(employee);
   };
 
   return (
     <>
-      <h2>Create Employee</h2>
       <form className="w-1/3" onSubmit={handleCreate}>
         <fieldset id="contact" className="grid">
           <label htmlFor="first-name">First Name</label>
@@ -326,6 +332,13 @@ export default function Create() {
         <fieldset id="more" className="grid">
           <Select name="department" label="Department" options={departments} />
         </fieldset>
+
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Submit employee
+        </button>
       </form>
     </>
   );

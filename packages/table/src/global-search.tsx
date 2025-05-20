@@ -1,12 +1,11 @@
 import type { Table } from "@tanstack/react-table";
-import type { Employee } from "../../types";
 import { useEffect, useState } from "react";
 
-interface GlobalSearchProps {
-  table: Table<Employee>;
-}
-
-export default function GlobalSearch({ table }: GlobalSearchProps) {
+export default function GlobalSearch<D extends { id: string | number }>({
+  table,
+}: {
+  table: Table<D>;
+}) {
   const [value, setValue] = useState("");
 
   useEffect(() => {

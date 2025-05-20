@@ -1,11 +1,14 @@
 import logo from "/logo.png";
-import "./App.css";
-import Create from "./components/create-form";
+import "./styles.css";
+import { useState } from "react";
+import type { Employee } from "./types";
+import { defaultData } from "./defaultData";
+import CreateEmployee from "./components/create-form";
 import Datatable from "table";
 
-import defaultData from "./defaultData";
-
 function App() {
+  const [employees, setEmployee] = useState<Employee[]>([]);
+
   return (
     <>
       <header>
@@ -15,47 +18,54 @@ function App() {
       </header>
       <h1 className="text-blue-500">HRnet</h1>
       <main className="">
-        <Create />
+        <h2>Create Employee</h2>
+        <CreateEmployee
+          onCreate={(newEmployee) =>
+            setEmployee((employees) => [...employees, newEmployee])
+          }
+        />
+        <button onClick={() => setEmployee(defaultData)}>Fake Employees</button>
+        <button onClick={() => setEmployee([])}>Flush Employees</button>
 
         <h2>Current Employees</h2>
         <Datatable
-          data={defaultData}
+          data={employees}
           columns={[
             {
               header: "First Name",
-              accessorKey: "firstName",
+              key: "firstName",
             },
             {
               header: "Last Name",
-              accessorKey: "lastName",
+              key: "lastName",
             },
             {
               header: "Date of Birth",
-              accessorKey: "dateOfBirth",
+              key: "dateOfBirth",
             },
             {
               header: "Start Date",
-              accessorKey: "startDate",
+              key: "startDate",
             },
             {
               header: "Street",
-              accessorKey: "street",
+              key: "street",
             },
             {
               header: "City",
-              accessorKey: "city",
+              key: "city",
             },
             {
               header: "State",
-              accessorKey: "state",
+              key: "state",
             },
             {
               header: "Zip Code",
-              accessorKey: "zipCode",
+              key: "zipCode",
             },
             {
               header: "Department",
-              accessorKey: "department",
+              key: "department",
             },
           ]}
         />

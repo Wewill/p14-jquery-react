@@ -1,16 +1,11 @@
-import type { HeaderGroup, Table } from "@tanstack/react-table";
-import type { Employee } from "../../types";
-
+import type { HeaderGroup } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
 
-import ColumnFilter from "./columnFilter";
-
-interface TableHeadProps {
-  headerGroup: HeaderGroup<Employee>;
-  table: Table<Employee>;
-}
-
-export default function TableHead({ headerGroup, table }: TableHeadProps) {
+export default function TableHead<D extends { id: string | number }>({
+  headerGroup,
+}: {
+  headerGroup: HeaderGroup<D>;
+}) {
   return (
     <tr key={headerGroup.id}>
       {headerGroup.headers.map((header) => {
@@ -29,11 +24,6 @@ export default function TableHead({ headerGroup, table }: TableHeadProps) {
                 asc: " 🔼",
                 desc: " 🔽",
               }[header.column.getIsSorted() as string] ?? " •"}
-              {header.column.getCanFilter() ? (
-                <div>
-                  <ColumnFilter column={header.column} table={table} />
-                </div>
-              ) : null}
             </div>
           </th>
         );

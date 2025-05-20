@@ -19,6 +19,7 @@ export default function Select({
 
       if (options && options?.length > 0) {
         options.forEach(function (o) {
+          console.log(o);
           const option = document.createElement("option");
           option.value = o.abbreviation;
           option.text = o.name;
@@ -27,12 +28,15 @@ export default function Select({
       }
 
       $(`#${name}`).selectmenu();
-      mountedref.current = true;
     });
+
+    // Do not run this effect again
+    mountedref.current = true;
   }, [name]);
 
   return (
     <>
+      {JSON.stringify(options)}
       <label htmlFor={name}>{label}</label>
       <select id={name} name={name}></select>
     </>

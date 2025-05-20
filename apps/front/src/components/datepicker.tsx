@@ -20,12 +20,14 @@ export default function Datepicker({
 
       mountedref.current = true;
     });
+    // Do not run this effect again
+    mountedref.current = true;
   }, [name]);
 
   return (
     <>
       <label htmlFor={name}>{label}</label>
-      <input id={name} type="text" />
+      <input id={name} name={name} type="text" />
     </>
   );
 }
