@@ -1,0 +1,14 @@
+{
+  "name": "table",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/datatable.tsx",
+  "dependencies": {
+    "react": "^19.1.0",
+    "typescript": "~5.8.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.4"
+  }
+}
