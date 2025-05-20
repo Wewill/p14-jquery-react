@@ -70,7 +70,7 @@ export default function Datatable<D extends { id: string | null }>({
     <>
       <GlobalSearch table={table} />
 
-      <div className="p-2 bg-red-500">
+      <div className="p-2">
         <div className="h-2" />
         <table>
           <thead>

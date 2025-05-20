@@ -4,6 +4,8 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --main-color: #646cff;
+  --secondary-color: #535bf2;
 }
 
 #root {
@@ -22,26 +24,15 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--main-color);
   text-decoration: inherit;
+  transition: color 0.25s, font-weight 0.25s;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--secondary-color);
+  font-weight: 800;
 }
 
 body {
@@ -53,56 +44,137 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.4em;
+  font-weight: 800;
   line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+
+  border: 2px solid #e3e3e3;
+  padding: 0.4em 0.8em;
+  border-radius: 8px;
 }
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.5em 1em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #e3e3e3;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+  color: #646cff;
+  margin: 0.2em 0.4em;
 }
 button:hover {
-  border-color: #646cff;
+  color: white;
+  background-color: #646cff;
+  border-color: #757cfa;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 label {
   display: block;
   margin-bottom: 0.5em;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 700;
 }
 
 input {
   border-radius: 8px;
   border: 1px solid #e3e3e3;
-  padding: 0.6em 1.2em;
+  padding: 0.5em 1em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #f9f9f9;
+  color: var(--main-color);
   transition: border-color 0.25s;
+}
+
+footer {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #999;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2rem 0;
+}
+table th {
+  background-color: #f3f4f6;
+  color: #374151;
+  font-weight: 700;
+  padding: 0.5em;
+}
+table td {
+  padding: 0.5em;
+  border-bottom: 1px solid #e3e3e3;
+}
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+table tr:hover {
+  background-color: #f1f5f9;
+}
+table tr:last-child td {
+  border-bottom: none;
+}
+table th:first-child,
+table td:first-child {
+  border-left: 1px solid #e3e3e3;
+}
+table th:last-child,
+table td:last-child {
+  border-right: 1px solid #e3e3e3;
+}
+table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+table th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+table th:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+}
+table th,
+table td {
+  text-align: left;
+}
+table th,
+table td {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+table th {
+  font-weight: 700;
+}
+table td {
+  font-weight: 400;
+}
+table tr:hover td {
+  background-color: #f1f5f9;
+}
+table tr:nth-child(even) td {
+  background-color: #f9f9f9;
 }

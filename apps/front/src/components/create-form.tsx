@@ -302,7 +302,7 @@ export default function Create({
 
   return (
     <>
-      <form className="w-1/3" onSubmit={handleCreate}>
+      <form className="w-100" onSubmit={handleCreate}>
         <fieldset id="contact" className="grid">
           <label htmlFor="first-name">First Name</label>
           <input type="text" id="first-name" name="firstName" />
@@ -333,10 +333,7 @@ export default function Create({
           <Select name="department" label="Department" options={departments} />
         </fieldset>
 
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
+        <button type="submit" className="w-100 !m-0 !mt-3">
           Submit employee
         </button>
       </form>
