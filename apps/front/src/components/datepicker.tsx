@@ -20,15 +20,6 @@ export default function Datepicker({
     if (mountedref.current) return;
 
     $(function () {
-      // Extend JQuery interface to add datetimepicker property
-      // (Place this in a .d.ts file or above your component if needed)
-      // declare global {
-      //   interface JQuery<T = HTMLElement> {
-      //     datetimepicker(options?: any): JQuery<T>;
-      //   }
-      // }
-
-      // Now you can safely use datetimepicker
       ($(`#${name}`) as JQuery<HTMLElement>).datetimepicker({
         timepicker: false,
         format: "m/d/Y",
