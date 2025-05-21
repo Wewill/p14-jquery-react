@@ -1,7 +1,7 @@
 import type { Table } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 
-export default function GlobalSearch<D extends { id: string | number }>({
+export default function GlobalSearch<D extends {}>({
   table,
 }: {
   table: Table<D>;

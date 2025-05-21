@@ -1,6 +1,6 @@
 import type { Table } from "@tanstack/react-table";
 
-export default function Pagination<D extends { id: string | number }>({
+export default function Pagination<D extends {}>({
   table,
 }: {
   table: Table<D>;

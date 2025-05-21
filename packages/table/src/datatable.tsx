@@ -51,7 +51,7 @@ export default function Datatable<D extends { id: string | null }>({
   const table = useReactTable({
     columns: localColumns,
     data: data,
-    debugTable: true,
+    //debugTable: true,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -63,7 +63,7 @@ export default function Datatable<D extends { id: string | null }>({
       globalFilter,
     },
     onGlobalFilterChange: setGlobalFilter,
-    // autoResetPageIndex: false, // turn off page index reset when sorting or filtering
+    //autoResetPageIndex: false, // turn off page index reset when sorting or filtering
   });
 
   return (
