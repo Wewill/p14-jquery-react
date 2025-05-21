@@ -1,6 +1,6 @@
 {
   "name": "@wewiil/datatable",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "keywords": [
     "datatable",
@@ -10,6 +10,7 @@
   "type": "module",
   "main": "src/datatable.tsx",
   "dependencies": {
+    "@tanstack/react-table": "^8.21.3",
     "react": "^19.1.0",
     "typescript": "~5.8.3"
   },
