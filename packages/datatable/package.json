@@ -1,7 +1,12 @@
 {
-  "name": "table",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@wewiil/datatable",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "datatable",
+    "react",
+    "typescript"
+  ],
   "type": "module",
   "main": "src/datatable.tsx",
   "dependencies": {
