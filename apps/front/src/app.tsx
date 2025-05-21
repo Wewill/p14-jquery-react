@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { Employee } from "./types";
 import { defaultData } from "./defaultData";
 import CreateEmployee from "./components/create-form";
-import Datatable from "table";
+import Datatable from "@wewiil/datatable";
 
 function App() {
   const [employees, setEmployee] = useState<Employee[]>([]);
