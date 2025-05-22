@@ -11,8 +11,8 @@ importers:
   apps/front:
     dependencies:
       '@wewiil/datatable':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.2.0
+        version: 1.2.0(react-dom@19.1.0(react@19.1.0))
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -705,8 +705,8 @@ packages:
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0 || ^6.0.0
 
-  '@wewiil/datatable@1.0.0':
-    resolution: {integrity: sha512-FwCqsYvjs1mzToe5ZOf+Mlqnwe6Oc7X+LYZt5utB9g5+Xm9NfhTGYb6JRPm1LO3v416Y65qbsm1RnzDa9PeJ9Q==}
+  '@wewiil/datatable@1.2.0':
+    resolution: {integrity: sha512-4B0toVW76gXKLCF6PxozqCA9NZKv2VTCLaEfDI75ooDPY/9T75jXOG1cJzbA36oqooG0BAeSic0JoGxlX+kRIQ==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1914,10 +1914,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@wewiil/datatable@1.0.0':
+  '@wewiil/datatable@1.2.0(react-dom@19.1.0(react@19.1.0))':
     dependencies:
+      '@tanstack/react-table': 8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       typescript: 5.8.3
+    transitivePeerDependencies:
+      - react-dom
 
   acorn-jsx@5.3.2(acorn@8.14.1):
     dependencies:
