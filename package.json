@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "pnpm -F front dev"
+    "dev": "pnpm -F front dev",
+    "build": "pnpm -F front build",
+    "preview": "pnpm -F front preview"
   }
 }
