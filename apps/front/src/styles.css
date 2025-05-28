@@ -103,6 +103,17 @@ input {
   transition: border-color 0.25s;
 }
 
+.ui-selectmenu-button.ui-button {
+  width: 100% !important;
+}
+
+fieldset {
+  padding: 1rem;
+  border: 2px solid rgb(227, 227, 227);
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
 footer {
   margin-top: 2rem;
   font-size: 0.8rem;
